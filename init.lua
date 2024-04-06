@@ -583,6 +583,13 @@ require('lazy').setup({
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      -- We have to setup gleam manually since it uses the actual gleam executable (and we don't want to install that with Mason)
+      require('lspconfig').gleam.setup {
+        cmd = { 'gleam', 'lsp' },
+        filetypes = { 'gleam' },
+        root_dir = require('lspconfig').util.root_pattern('gleam.toml', '.git'),
+      }
+
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
