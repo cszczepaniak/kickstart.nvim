@@ -632,6 +632,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        go = { 'gofmt', 'goimports' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -785,6 +786,13 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+
+      -- Mini files
+      require('mini.files').setup()
+      vim.keymap.set('n', '-', function()
+        local path = vim.fn.expand '%'
+        require('mini.files').open(path)
+      end)
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
