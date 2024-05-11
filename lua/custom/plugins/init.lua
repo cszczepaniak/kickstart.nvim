@@ -6,6 +6,8 @@
 -- Custom keymaps
 vim.keymap.set('n', 'L', 'f(%f.a<CR><esc>')
 vim.keymap.set('n', 'Q', '@q')
+vim.keymap.set('n', '[f', '<cmd>cprevious<CR>', { desc = 'Previous quick[f]ix item' })
+vim.keymap.set('n', ']f', '<cmd>cnext<CR>', { desc = 'Next quick[f]ix item' })
 
 -- Global settings
 vim.cmd 'set textwidth=100'
