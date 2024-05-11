@@ -596,6 +596,13 @@ require('lazy').setup({
         root_dir = require('lspconfig').util.root_pattern('gleam.toml', '.git'),
       }
 
+      -- We have to setup dartls manually since it uses the actual dart executable (and we don't want to install that with Mason)
+      require('lspconfig').dartls.setup {
+        cmd = { 'dart', 'language-server' },
+        filetypes = { 'dart' },
+        root_dir = require('lspconfig').util.root_pattern 'pubspec.yaml',
+      }
+
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
@@ -836,6 +843,7 @@ require('lazy').setup({
         'vimdoc',
         'go',
         'gleam',
+        'dart',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
