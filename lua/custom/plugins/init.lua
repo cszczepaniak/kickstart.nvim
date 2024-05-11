@@ -11,6 +11,14 @@ vim.keymap.set('n', 'Q', '@q')
 vim.cmd 'set textwidth=100'
 
 return {
+  {
+    'vim-test/vim-test',
+    config = function()
+      vim.cmd "let test#strategy = 'toggleterm'"
+      vim.api.nvim_set_keymap('n', '<leader>tn', '<cmd>TestNearest<CR>', { desc = 'Run the [n]earest [t]est' })
+      vim.api.nvim_set_keymap('n', '<leader>tf', '<cmd>TestFile<CR>', { desc = 'Run the [t]ests in this [f]ile' })
+    end,
+  },
   -- Adds :GBrowse command to open the current selection on GitHub
   {
     'tpope/vim-rhubarb',
