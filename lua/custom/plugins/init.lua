@@ -11,6 +11,13 @@ vim.keymap.set('n', 'Q', '@q')
 vim.cmd 'set textwidth=100'
 
 return {
+  -- Adds :GBrowse command to open the current selection on GitHub
+  {
+    'tpope/vim-rhubarb',
+  },
+  {
+    'tpope/vim-fugitive',
+  },
   {
     'akinsho/toggleterm.nvim',
     config = function()
