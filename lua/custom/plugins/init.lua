@@ -14,6 +14,26 @@ vim.cmd 'set textwidth=100'
 vim.cmd 'set exrc'
 
 return {
+  {
+    'cszczepaniak/bananasplit',
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        bananasplit = {
+          enable = true,
+          keymaps = {
+            split = '<leader>fl',
+          },
+          argwrap_fallback = true,
+          auto_format = true,
+        },
+      }
+    end,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'FooSoft/vim-argwrap',
+      'stevearc/conform.nvim',
+    },
+  },
   { 'nvim-treesitter/playground' },
   {
     'vim-test/vim-test',
@@ -41,14 +61,6 @@ return {
         lazygit:toggle()
       end, {})
       vim.api.nvim_set_keymap('n', '<leader>gg', '<cmd>LazyGitToggle<CR>', { noremap = true, silent = true })
-    end,
-  },
-  {
-    'FooSoft/vim-argwrap',
-    config = function()
-      vim.cmd 'let g:argwrap_tail_comma = 1'
-
-      vim.keymap.set('n', '<leader>fl', '<cmd>ArgWrap<CR>')
     end,
   },
   {
