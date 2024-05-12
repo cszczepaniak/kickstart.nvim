@@ -11,6 +11,7 @@ vim.keymap.set('n', ']f', '<cmd>cnext<CR>', { desc = 'Next quick[f]ix item' })
 
 -- Global settings
 vim.cmd 'set textwidth=100'
+vim.cmd 'set exrc'
 
 return {
   {
