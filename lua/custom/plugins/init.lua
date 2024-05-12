@@ -14,6 +14,7 @@ vim.cmd 'set textwidth=100'
 vim.cmd 'set exrc'
 
 return {
+  { 'nvim-treesitter/playground' },
   {
     'vim-test/vim-test',
     config = function()
