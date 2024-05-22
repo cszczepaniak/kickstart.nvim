@@ -15,6 +15,16 @@ vim.cmd 'set exrc'
 
 return {
   {
+    'alexghergh/nvim-tmux-navigation',
+    config = function()
+      require('nvim-tmux-navigation').setup {}
+      vim.keymap.set('n', '<C-h>', '<Cmd>NvimTmuxNavigateLeft<CR>', {})
+      vim.keymap.set('n', '<C-j>', '<Cmd>NvimTmuxNavigateDown<CR>', {})
+      vim.keymap.set('n', '<C-k>', '<Cmd>NvimTmuxNavigateUp<CR>', {})
+      vim.keymap.set('n', '<C-l>', '<Cmd>NvimTmuxNavigateRight<CR>', {})
+    end,
+  },
+  {
     'cszczepaniak/bananasplit',
     config = function()
       require('nvim-treesitter.configs').setup {
@@ -37,10 +47,13 @@ return {
   { 'nvim-treesitter/playground' },
   {
     'vim-test/vim-test',
+    dependencies = {
+      'preservim/vimux',
+    },
     config = function()
-      vim.cmd "let test#strategy = 'toggleterm'"
       vim.api.nvim_set_keymap('n', '<leader>tn', '<cmd>TestNearest<CR>', { desc = 'Run the [n]earest [t]est' })
       vim.api.nvim_set_keymap('n', '<leader>tf', '<cmd>TestFile<CR>', { desc = 'Run the [t]ests in this [f]ile' })
+      vim.cmd "let test#strategy = 'vimux'"
     end,
   },
   -- Adds :GBrowse command to open the current selection on GitHub
