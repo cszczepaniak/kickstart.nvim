@@ -27,6 +27,7 @@ return {
   {
     'cszczepaniak/bananasplit',
     config = function()
+      vim.api.nvim_set_keymap('n', '<leader>fl', '<cmd>ArgWrap<CR>', {})
       require('nvim-treesitter.configs').setup {
         bananasplit = {
           enable = true,
