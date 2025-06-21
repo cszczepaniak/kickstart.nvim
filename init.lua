@@ -43,6 +43,10 @@ vim.o.timeoutlen = 300
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+-- Configure tab settings
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 -- Sets how neovim will display certain whitespace characters in the editor.
 vim.o.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
