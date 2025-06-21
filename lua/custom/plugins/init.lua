@@ -26,4 +26,46 @@ return {
 			vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>LazyGitToggle<CR>", { noremap = true, silent = true })
 		end,
 	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				modules = {},
+				sync_install = true,
+				ensure_installed = {},
+				ignore_install = {},
+				auto_install = true,
+				textobjects = {
+					select = {
+						enable = true,
+						-- Automatically jump forward to textobj, similar to targets.vim
+						lookahead = true,
+						keymaps = {
+							-- You can use the capture groups defined in textobjects.scm
+							["at"] = "@class.outer",
+							["it"] = "@class.inner",
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["aF"] = "@call.outer",
+							["iF"] = "@call.inner",
+							["aa"] = "@parameter.outer",
+							["ia"] = "@parameter.inner",
+						},
+					},
+					swap = {
+						enable = true,
+						swap_next = {
+							["<leader>fa"] = "@parameter.inner",
+						},
+						swap_previous = {
+							["<leader>fA"] = "@parameter.inner",
+						},
+					},
+				},
+			})
+		end,
+	},
 }
