@@ -5,7 +5,9 @@ return {
 			"preservim/vimux",
 		},
 		config = function()
-			require("gotest").setup()
+			require("gotest").setup({
+				default_args = {},
+			})
 		end,
 	},
 }

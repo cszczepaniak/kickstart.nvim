@@ -78,24 +78,35 @@ local prompt_for_args = function()
 	return vim.split(args, " ")
 end
 
-M.setup = function()
+---@class gotest.Options
+---@field default_args? string[]
+
+---@param opts? gotest.Options
+M.setup = function(opts)
+	local default_args = (opts and opts.default_args) or {}
+
 	vim.keymap.set("n", "<leader>tp", function()
 		run_tests({
 			test_package = true,
+			additional_args = default_args,
 		})
 	end, { desc = "Go: [T]est [p]ackage" })
 
 	vim.keymap.set("n", "<leader>tP", function()
 		run_tests({
 			test_package = true,
-			additional_args = prompt_for_args(),
+			additional_args = vim.list_extend(prompt_for_args(), default_args),
 		})
 	end, { desc = "Go: [T]est [p]ackage (with additional args)" })
 
-	vim.keymap.set("n", "<leader>tn", run_tests, { desc = "Go: [T]est [n]earest" })
+	vim.keymap.set("n", "<leader>tn", function()
+		run_tests({
+			additional_args = default_args,
+		})
+	end, { desc = "Go: [T]est [n]earest" })
 	vim.keymap.set("n", "<leader>tN", function()
 		run_tests({
-			additional_args = prompt_for_args(),
+			additional_args = vim.list_extend(prompt_for_args(), default_args),
 		})
 	end, { desc = "Go: [T]est [n]earest (with additional args)" })
 end
