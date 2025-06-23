@@ -16,6 +16,13 @@ local run_tests = function(opts)
 		vim.call("VimuxRunCommand", "go test ./" .. vim.fn.expand("%:h"))
 		return
 	end
+
+	if vim.fn.executable("gotestlist") == 0 then
+		local res = vim.system({ "go", "install", "github.com/cszczepaniak/gotestlist@latest" }):wait()
+		if res.code ~= 0 then
+			vim.notify("Error installing gotestlist: " .. res.stderr, vim.log.levels.ERROR)
+			return
+		end
 	end
 
 	local r, c = unpack(vim.api.nvim_win_get_cursor(0))
