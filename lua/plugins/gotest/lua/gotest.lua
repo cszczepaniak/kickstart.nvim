@@ -13,7 +13,7 @@ local run_tests = function(opts)
 
 	local test_package = (opts and opts.test_package) or false
 	if test_package then
-		vim.call("VimuxRunCommand", "go test ./" .. vim.fn.expand("%:h"))
+		vim.call("VimuxRunCommand", "go test ./" .. vim.fn.expand("%:.:h"))
 		return
 	end
 
@@ -67,7 +67,7 @@ local run_tests = function(opts)
 	args = vim.list_extend(args, additional_args or {})
 
 	-- Now add the target package path
-	args = vim.list_extend(args, { "./" .. vim.fn.expand("%:h") })
+	args = vim.list_extend(args, { "./" .. vim.fn.expand("%:.:h") })
 
 	-- Run the test in a tmux window (nearest, or create a new one)
 	vim.call("VimuxRunCommand", vim.fn.join(args, " "))
