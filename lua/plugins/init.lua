@@ -22,6 +22,7 @@ require("lazy").setup({
 	require("plugins.mini"),
 	require("plugins.theme"),
 	require("plugins.treesitter"),
+	require("plugins.gitsigns"),
 	require("plugins.tmux"),
 	require("plugins.gotest"),
 })
