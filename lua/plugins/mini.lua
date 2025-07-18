@@ -13,7 +13,7 @@ return {
 
 		require("mini.files").setup()
 		vim.keymap.set("n", "-", function()
-			require("mini.files").open(vim.fn.expand("%:h"))
+			require("mini.files").open(vim.fn.expand("%"))
 		end)
 	end,
 }
