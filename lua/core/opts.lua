@@ -25,3 +25,5 @@ vim.o.inccommand = "split"
 vim.o.cursorline = true
 vim.o.scrolloff = 10
 vim.o.confirm = true
+vim.o.textwidth = 100
+vim.o.formatoptions = "tcq"
