@@ -25,4 +25,5 @@ require("lazy").setup({
 	require("plugins.gitsigns"),
 	require("plugins.tmux"),
 	require("plugins.gotest"),
+	require("plugins.tpope"),
 })
