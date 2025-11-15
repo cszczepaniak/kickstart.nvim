@@ -36,7 +36,7 @@ return {
 		},
 		formatters_by_ft = {
 			lua = { "stylua" },
-			go = { "gosimports" },
+			go = { "goimports" },
 		},
 	},
 }
