@@ -32,7 +32,6 @@ return {
 		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 		vim.keymap.set("n", "<leader>sf", builtin.git_files, { desc = "[S]earch [F]iles" })
 		vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
 
 		vim.keymap.set("n", "<leader>sg", function(opts)
 			local pickers = require("telescope.pickers")
@@ -67,7 +66,7 @@ return {
 						{ "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
 					})
 				end,
-				make_entry = make_entry.gen_from_vimgrep(opts),
+				entry_maker = make_entry.gen_from_vimgrep(opts),
 				cwd = opts.cwd,
 			})
 
