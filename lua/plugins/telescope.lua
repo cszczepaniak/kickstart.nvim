@@ -30,7 +30,12 @@ return {
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-		vim.keymap.set("n", "<leader>sf", builtin.git_files, { desc = "[S]earch [F]iles" })
+		vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
+		vim.keymap.set("n", "<leader>sF", function()
+			builtin.find_files({
+				hidden = true,
+			})
+		end, { desc = "[S]earch [F]iles" })
 		vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
 
 		vim.keymap.set("n", "<leader>sg", function(opts)
@@ -63,7 +68,18 @@ return {
 					---@diagnostic disable-next-line: deprecated
 					return vim.tbl_flatten({
 						args,
-						{ "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
+						{
+							"--color=never",
+							"--no-heading",
+							"--with-filename",
+							"--line-number",
+							"--column",
+							"--smart-case",
+							"--hidden",
+							-- ignore the .git directory
+							"-g",
+							"!.git/**",
+						},
 					})
 				end,
 				entry_maker = make_entry.gen_from_vimgrep(opts),
@@ -80,6 +96,7 @@ return {
 				})
 				:find()
 		end, { desc = "[S]earch by [G]rep" })
+
 		vim.keymap.set("n", "<leader>sd", function()
 			require("git_branch").files()
 		end, { desc = "[S]earch for [D]iffed files" })
