@@ -1,5 +1,7 @@
 return {
 	"folke/snacks.nvim",
+	opts = {
+	},
 	config = function()
 		vim.keymap.set("n", "<leader>sf", function()
 			Snacks.picker.smart()
@@ -13,6 +15,10 @@ return {
 
 		vim.keymap.set("n", "<leader>sg", function(opts)
 			Snacks.picker.grep({})
+		end, { desc = "[S]earch by [G]rep" })
+
+		vim.keymap.set("n", "<leader>gg", function(opts)
+			Snacks.lazygit.open()
 		end, { desc = "[S]earch by [G]rep" })
 	end,
 }

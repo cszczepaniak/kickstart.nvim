@@ -16,8 +16,7 @@ rtp:prepend(lazypath)
 require("lazy").setup({
 	require("plugins.autocomplete"),
 	require("plugins.autoformat"),
-	require("plugins.pickers"),
-	require("plugins.lazygit"),
+	require("plugins.snacks"),
 	require("plugins.lsp"),
 	require("plugins.mini"),
 	require("plugins.theme"),
