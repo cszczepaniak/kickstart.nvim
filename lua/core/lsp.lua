@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-		map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
+		map("<leader>ca", require("tiny-code-action").code_action, "[C]ode [A]ction", { "n", "x" })
 		map("gr", Snacks.picker.lsp_references, "[G]oto [R]eferences")
 		map("gi", Snacks.picker.lsp_implementations, "[G]oto [I]mplementation")
 		map("gd", Snacks.picker.lsp_definitions, "[G]oto [D]efinition")
